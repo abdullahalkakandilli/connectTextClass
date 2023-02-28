@@ -19,7 +19,7 @@ def _max_width_():
         unsafe_allow_html=True,
     )
 
-st.set_page_config(page_icon="images/icon.png", page_title="PDF Question Answering")
+st.set_page_config(page_icon="images/icon.png", page_title="RNC Text Classification")
 API_KEY = st.sidebar.text_input(
     "Enter your HuggingFace API key",
     help="Once you created you HuggingFace account, you can get your free API token in your settings page: https://huggingface.co/settings/tokens",
@@ -32,7 +32,7 @@ with c2:
     c31, c32 = st.columns([12, 2])
     with c31:
         st.caption("")
-        st.title("Logo or Not Logo")
+        st.title("Text Classifier")
     with c32:
         st.image(
             "images/logo.png",
