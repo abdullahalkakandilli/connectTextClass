@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 from functionforDownloadButtons import download_button
 import requests
-
+from streamlit_tags import st_tags
 API_URL = "https://api-inference.huggingface.co/models/joeddav/xlm-roberta-large-xnli"
 
 def _max_width_():
@@ -63,27 +63,27 @@ else:
 
     st.stop()
 encode_list = []
-def get_values(column_names, keywords_ ):
+def get_values(column_names, labels_from_st_tags ):
     def query(payload):
         response = requests.post(API_URL, headers=headers, json=payload)
         return response.json()
 
-    candidate_labels_ = keywords_.split(",")
+
     label_lists = {}
 
-    for element in candidate_labels_:
+    for element in labels_from_st_tags:
         label_lists[element] = []
 
     for index, row in df[column_names].items():
         output = query({
             "inputs": row,
-            "parameters": {"candidate_labels": candidate_labels_},
+            "parameters": {"candidate_labels": labels_from_st_tags},
         })
 
         for index_, value in enumerate(output['labels']):
             label_lists[value].append(output['scores'][index_])
 
-    for vals in candidate_labels_:
+    for vals in labels_from_st_tags:
         df[vals] = label_lists[vals]
     return
 
@@ -95,13 +95,20 @@ with form:
     column_names = st.selectbox(
         "Column name:", list(df.columns)
     )
+
+    labels_from_st_tags = st_tags(
+        value=["account", "credit", "reporting"],
+        maxtags=5,
+        suggestions=["account", "credit", "reporting"],
+        label="",
+    )
     keywords_ = st.text_input("Enter keywords by using , !")
 
     submitted = st.form_submit_button(label="Submit")
 result_df = pd.DataFrame()
 if submitted:
 
-    result = get_values(column_names, keywords_)
+    result = get_values(column_names, labels_from_st_tags)
 
 
 c29, c30, c31 = st.columns([1, 1, 2])
