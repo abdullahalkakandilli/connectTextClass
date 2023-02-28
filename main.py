@@ -81,7 +81,7 @@ def get_values(column_names, labels_from_st_tags ):
         })
 
         for index_, value in enumerate(output['labels']):
-            label_lists[value].append(output['scores'][index_])
+            label_lists[value].append(round(output['scores'][index_],2))
 
     for vals in labels_from_st_tags:
         df[vals] = label_lists[vals]
@@ -102,7 +102,6 @@ with form:
         suggestions=["account", "credit", "reporting"],
         label="",
     )
-    keywords_ = st.text_input("Enter keywords by using , !")
 
     submitted = st.form_submit_button(label="Submit")
 result_df = pd.DataFrame()
