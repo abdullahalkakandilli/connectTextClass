@@ -75,6 +75,7 @@ def get_values(column_names, labels_from_st_tags ):
         label_lists[element] = []
 
     for index, row in df[column_names].items():
+        st.write(row)
         output = query({
             "inputs": row,
             "parameters": {"candidate_labels": labels_from_st_tags},
