@@ -111,7 +111,7 @@ if submitted:
     result = get_values(column_names, labels_from_st_tags)
 
 
-c29, c30, c31 = st.columns([1, 1, 2])
+
 buffer = io.BytesIO()
 # Create a Pandas Excel writer using XlsxWriter as the engine.
 with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
@@ -122,13 +122,6 @@ with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
     st.download_button(
         label="Download Excel worksheets",
         data=buffer,
-        file_name="pandas_multiple.xlsx",
+        file_name="ClassifiedExcelResult.xlsx",
         mime="application/vnd.ms-excel"
-    )
-with c29:
-    st.write(df)
-    CSVButton = download_button(
-        df,
-        "FlaggedFile.csv",
-        "Download to CSV",
     )
