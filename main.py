@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import streamlit as st
 from functionforDownloadButtons import download_button
@@ -20,12 +21,8 @@ def _max_width_():
     )
 
 st.set_page_config(page_icon="images/icon.png", page_title="RNC Text Classification")
-API_KEY = st.sidebar.text_input(
-    "Enter your HuggingFace API key",
-    help="Once you created you HuggingFace account, you can get your free API token in your settings page: https://huggingface.co/settings/tokens",
-    type="password",
-)
-headers = {"Authorization": f"Bearer {API_KEY}"}
+
+headers = {"Authorization": f"Bearer {os.getenv('API_KEY')}"}
 c2, c3 = st.columns([6, 1])
 
 with c2:
