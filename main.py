@@ -50,14 +50,14 @@ if uploaded_file is not None:
     uploaded_file.seek(0)
 
 
-    file_container = st.expander("Check your uploaded .csv")
+    file_container = st.expander("Check your uploaded .excel")
     file_container.write(df)
 
 
 else:
     st.info(
         f"""
-            👆 Upload a .csv file first. Sample to try: [biostats.csv](https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv)
+            👆 Upload a .xlsx file first. Only Excel files are accepted!
             """
     )
 
