@@ -4,7 +4,7 @@ from functionforDownloadButtons import download_button
 import requests
 from streamlit_tags import st_tags
 API_URL = "https://api-inference.huggingface.co/models/joeddav/xlm-roberta-large-xnli"
-
+import io
 def _max_width_():
     max_width_str = f"max-width: 1800px;"
     st.markdown(
@@ -75,7 +75,7 @@ def get_values(column_names, labels_from_st_tags ):
         label_lists[element] = []
 
     for index, row in df[column_names].items():
-        st.write(row)
+
         output = query({
             "inputs": row,
             "parameters": {"candidate_labels": labels_from_st_tags},
@@ -112,9 +112,21 @@ if submitted:
 
 
 c29, c30, c31 = st.columns([1, 1, 2])
-
+buffer = io.BytesIO()
+# Create a Pandas Excel writer using XlsxWriter as the engine.
+with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
+    # Write each dataframe to a different worksheet.
+    df.to_excel(writer, sheet_name='Sheet1')
+    # Close the Pandas Excel writer and output the Excel file to the buffer
+    writer.save()
+    st.download_button(
+        label="Download Excel worksheets",
+        data=buffer,
+        file_name="pandas_multiple.xlsx",
+        mime="application/vnd.ms-excel"
+    )
 with c29:
-
+    st.write(df)
     CSVButton = download_button(
         df,
         "FlaggedFile.csv",
