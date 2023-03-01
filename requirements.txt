@@ -1,3 +1,4 @@
 streamlit
 streamlit_tags
 openpyxl
+xlsxwriter
