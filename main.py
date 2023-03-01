@@ -46,7 +46,7 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file, encoding='cp1256')
+    df = pd.read_excel(uploaded_file)
     uploaded_file.seek(0)
 
 

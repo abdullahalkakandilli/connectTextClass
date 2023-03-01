@@ -4,7 +4,7 @@ import requests
 API_URL = "https://api-inference.huggingface.co/models/joeddav/xlm-roberta-large-xnli"
 headers = {"Authorization": "Bearer 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"}
 
-df = pd.read_csv('testRenc.csv')
+df = pd.read_excel(r'C:\Users\alka\Masaüstü\testExcel.xlsx')
 pd.set_option('display.max_columns', None)
 def query(payload):
 	response = requests.post(API_URL, headers=headers, json=payload)
