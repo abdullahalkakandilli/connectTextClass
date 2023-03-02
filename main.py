@@ -20,7 +20,7 @@ def _max_width_():
         unsafe_allow_html=True,
     )
 
-st.set_page_config(page_icon="images/icon.png", page_title="RNC Text Classification")
+st.set_page_config(page_icon="images/icon.png", page_title="Text Classification")
 
 headers = {"Authorization": f"Bearer {os.getenv('API_KEY')}"}
 c2, c3 = st.columns([6, 1])
