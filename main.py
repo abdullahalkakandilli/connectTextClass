@@ -57,6 +57,8 @@ else:
             👆 Upload a .xlsx file first. Only Excel files are accepted!
             """
     )
+    st.video('https://youtu.be/A17fZngIU1E')
+    st.stop()
 
     st.stop()
 encode_list = []
@@ -122,3 +124,7 @@ with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
         file_name="ClassifiedExcelResult.xlsx",
         mime="application/vnd.ms-excel"
     )
+c6, c7, c8 = st.columns([1, 6, 1])
+
+with c7:
+    st.video('https://youtu.be/A17fZngIU1E')
